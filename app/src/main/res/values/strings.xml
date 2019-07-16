@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Walpe</string>
+    <string name="unsplash">https://api.unsplash.com/</string>
 </resources>

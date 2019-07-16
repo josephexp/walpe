@@ -1,6 +1,7 @@
 package com.example.walpe;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -20,24 +21,28 @@ public class MainActivity extends AppCompatActivity {
 
         Fresco.initialize(this);
 
-        List<Data> data = fill_with_data();
+        List<WalpeImageData> data = fill_with_data();
 
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerview);
-        Recycler_View_Adapter adapter = new Recycler_View_Adapter(data, getApplication());
+        WalpeRecyclerViewAdapter adapter = new WalpeRecyclerViewAdapter(data, getApplication());
         recyclerView.setAdapter(adapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        recyclerView.setHasFixedSize(true);
+        RecyclerView.LayoutManager layoutManager = new GridLayoutManager(getApplicationContext(), 4);
+        recyclerView.setLayoutManager(layoutManager);
+
     }
 
-    public List<Data> fill_with_data() {
+    public List<WalpeImageData> fill_with_data() {
 
-        List<Data> data = new ArrayList<>();
+        List<WalpeImageData> data = new ArrayList<>();
 
-        data.add(new Data("Batman vs Superman", "Following the destruction of Metropolis, Batman embarks on a personal vendetta against Superman ", "https://homepages.cae.wisc.edu/~ece533/images/airplane.png"));
-        data.add(new Data("X-Men: Apocalypse", "X-Men: Apocalypse is an upcoming American superhero film based on the X-Men characters that appear in Marvel Comics ", "https://homepages.cae.wisc.edu/~ece533/images/airplane.png"));
-        data.add(new Data("Captain America: Civil War", "A feud between Captain America and Iron Man leaves the Avengers in turmoil.  ", "https://homepages.cae.wisc.edu/~ece533/images/airplane.png"));
-        data.add(new Data("Kung Fu Panda 3", "After reuniting with his long-lost father, Po  must train a village of pandas", "https://homepages.cae.wisc.edu/~ece533/images/airplane.png"));
-        data.add(new Data("Warcraft", "Fleeing their dying home to colonize another, fearsome orc warriors invade the peaceful realm of Azeroth. ", "https://homepages.cae.wisc.edu/~ece533/images/airplane.png"));
-        data.add(new Data("Alice in Wonderland", "Alice in Wonderland: Through the Looking Glass ", "https://homepages.cae.wisc.edu/~ece533/images/airplane.png"));
+        data.add(new WalpeImageData("Batman vs Superman", "Following the destruction of Metropolis, Batman embarks on a personal vendetta against Superman ", "https://source.unsplash.com/user/a"));
+        data.add(new WalpeImageData("X-Men: Apocalypse", "X-Men: Apocalypse is an upcoming American superhero film based on the X-Men characters that appear in Marvel Comics ", "https://source.unsplash.com/collection/190727/"));
+        data.add(new WalpeImageData("Captain America: Civil War", "A feud between Captain America and Iron Man leaves the Avengers in turmoil.  ", "https://source.unsplash.com/collection/190728/"));
+        data.add(new WalpeImageData("Kung Fu Panda 3", "After reuniting with his long-lost father, Po  must train a village of pandas", "https://source.unsplash.com/collection/190726/"));
+        data.add(new WalpeImageData("Warcraft", "Fleeing their dying home to colonize another, fearsome orc warriors invade the peaceful realm of Azeroth. ", "https://source.unsplash.com/collection/190725/"));
+        data.add(new WalpeImageData("Alice in Wonderland", "Alice in Wonderland: Through the Looking Glass ", "https://source.unsplash.com/collection/190002/"));
 
         return data;
     }
